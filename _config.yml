@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Development Record
+title: Ron's Notes
 subtitle: ''
-description: ''
+description: '各种味道刺激鼻腔，多变的风拂过头发吹过身体而去，阳光洒落在肌肤上，在脸颊上感受到它的温度，世界如此耀眼。'
 keywords:
 author: Ron.
 language: en
@@ -97,7 +97,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: cactus ## landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
