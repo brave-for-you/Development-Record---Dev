@@ -179,8 +179,10 @@ console.log(str) // ABC
 ``` 
 ### 键盘输入限制只有大写字母
 ``` javascript
+//  @input="scope.row.accountNo = handleToCheckValFn(scope.row.accountNo)"
 _handleToCheckValFn(val) {
-  const regex = /^[A-Z]+$/
+  const regex = /^[A-Z]+$/ // 只填大写字母
+  // const regex = /^[0-9]+$/ // 只填数字
   let tempStr = ""
   for(let i in val) {
     if(regex.test(val[i])) {
