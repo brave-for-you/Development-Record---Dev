@@ -3,7 +3,7 @@ title: Dev-Memos
 date: 2023-06-15 10:29:07
 tags:
 ---
-一些代码片段记录。
+一些感觉有意思的代码片段记录，持续更新记录...
 
 ## 加解密
 
@@ -339,9 +339,11 @@ background-image: linear-gradient(225deg, #f44336 20%, #00dd00 20%);
 </script>
 ```
 
-## ssh生成公钥私钥配对
+## ssh
 ``` sh
+# 生成公钥私钥配对
 $ ssh-keygen -t ed25519 -C "邮箱"
+# git基础信息设置
+$ git config --global user.name ""
+$ git config --global user.email ""
 ```
-
-
