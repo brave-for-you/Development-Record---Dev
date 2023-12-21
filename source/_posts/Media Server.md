@@ -20,7 +20,7 @@ tags:
     -f gdigrab -i desktop 启用桌面录制 -f gdigrab -i title="" # 启用应用录制
     -f dshow -i video="" 指定video设备 -f dshow -i audio="" # 指定audio设备
     -re -stream_loop -1 # 重复
-    -vcodec libx264 -preset ultrafast # video指定解码配置 
+    -vcodec libx264 -preset ultrafast # video指定解码配置
     -acodec libmp3lame -ar 44100 -ac 1 # audio指定解码配置
     -c:v libx264 -preset ultrafast  # vfwcap摄像头使用video配置
 ```
@@ -33,7 +33,7 @@ tags:
     ffmpeg -f vfwcap  -i "0" -c:v libx264 -preset ultrafast -f flv rtmp://localhost:1935/media/home
 
     # 桌面desktop推流至rtmp接口（不包含acodec）
-    ffmpeg -f gdigrab -i desktop -vcodec libx264 -preset ultrafast -f flv rtmp://localhost:1935/media/home
+    ffmpeg -f gdigrab -i desktop -vcodec libx264 -preset ultrafast -f flv rtmp://192.168.52.51:1935/media/home
 ```
 ### ffmpeg本地
 ```shell
@@ -42,7 +42,7 @@ tags:
     # -vn 表示去掉视频， -c:a copy表示不改变音频编码，直接拷贝。
 
     # 进行指定时间截图
-    ffmpeg.exe -ss 0:8:34 -i 二狗子.mp4 -vframes 1 -q:v 2 output.jpg
+    ffmpeg.exe -ss 0:8:34 -i aa.mp4 -vframes 1 -q:v 2 output.jpg
     # -vframes1表示只截取一帧， -q:v2表示输出的图片质量，通常范围在1到5之间（1 为最高质量）
 
     # 为音频添加封面

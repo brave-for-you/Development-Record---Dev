@@ -165,7 +165,7 @@ let recursive = (_list, path = 0) => {
             let childs = recursive(_list, (path + '/' + item.id))
             _tree.push({
                 ...item,
-                children: childs.length > 0 ? childs : (item.isLeaf ? null : [])
+                children: childs.length > 0 ? childs : []
             })
         }
     })

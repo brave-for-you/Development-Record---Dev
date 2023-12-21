@@ -8,7 +8,7 @@ tags:
 ## 加解密
 
 ### 加密
-``` javascript
+```javascript
 compileStr(code) {
   let c = String.fromCharCode(code.charCodeAt(0) + code.length)
   for(let i=1;i<code.length;i++) {
@@ -18,7 +18,7 @@ compileStr(code) {
 }
 ```
 ### 解密
-``` javascript
+```javascript
 unCompileStr(str) {
   const code = unescape(str)
   let c = String.fromCharCode(code.charCodeAt(0) - code.length)
@@ -32,7 +32,7 @@ unCompileStr(str) {
 ## 时间内容
 
 ### 时分秒倒计时（09:59:20）
-``` javascript
+```javascript
 // timeStamp为毫秒
 handleToSetTimerFn(timeStamp) {
 	let timer = null
@@ -70,7 +70,7 @@ handleToSetTimerFn(timeStamp) {
 }
 ```
 ### 秒转换时分秒（10:00:00）
-``` javascript
+```javascript
 handleformatSeconds(value) {
   if(!value) {
     return 0
@@ -91,7 +91,7 @@ handleformatSeconds(value) {
 }
 ```
 ### 时间范围与当前时间前后对比
-``` javascript
+```javascript
 _handleToCompareTime(tempStartTimeStr, tempEndTimeStr) {
 	const tempStartTime = new Date(tempStartTimeStr).getTime()
 	const tempEndTime = new Date(tempEndTimeStr).getTime()
@@ -107,11 +107,18 @@ _handleToCompareTime(tempStartTimeStr, tempEndTimeStr) {
 	}
 }
 ```
+### ElementUi日期组件
+```javascript
+    // ElementUi组件禁用当前时间前2天后5天以外的内容
+    disabledDate: (date) => {
+        return date.getTime() < Date.now() - 2 * 24 * 60 * 60 * 1000 || date.getTime() > Date.now() + 5 * 24 * 60 * 60 * 1000;
+    }
+```
 
 ## 文件内容
 
 ### 文件流下载
-``` javascript
+```javascript
 handleReturnDownloadFile(content,filename) {
   let eleLink = document.createElement('a')
   eleLink.download = filename
@@ -129,7 +136,7 @@ handleReturnDownloadFile(content,filename) {
 }
 ``` 
 ### Base64转img
-``` javascript
+```javascript
 convertBase64UrlToBlob(urlData) {
   let bytes = window.atob(urlData)
   // 处理异常,将ascii码小于0的转换为大于0
@@ -145,19 +152,19 @@ convertBase64UrlToBlob(urlData) {
 ## 字符串内容
 
 ### 数字校验
-``` javascript
+```javascript
 const a = /[0-9]/.exec(Str) != null ? 1 : 0
 ``` 
 ### 字母校验
-``` javascript
+```javascript
 const a = /[a-zA-Z]/.exec(Str) != null ? 1 : 0
 ``` 
 ### 营业执照校验
-``` javascript
+```javascript
 const reg = /[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/.exec(Str)
 ``` 
 ### 字节统计
-``` javascript
+```javascript
 handleToCountStrLength(str) {
   let len = 0
   for (let i = 0; i < str.length; i++) { 
@@ -172,13 +179,13 @@ handleToCountStrLength(str) {
 }
 ``` 
 ### 字符串转大写
-``` javascript
+```javascript
 let str = 'abc'
 str.toUpperCase()
 console.log(str) // ABC
 ``` 
 ### 键盘输入限制只有大写字母
-``` javascript
+```javascript
 //  @input="scope.row.accountNo = handleToCheckValFn(scope.row.accountNo)"
 _handleToCheckValFn(val) {
   const regex = /^[A-Z]+$/ // 只填大写字母
@@ -192,20 +199,38 @@ _handleToCheckValFn(val) {
   return tempStr
 }
 ```
-### 手机号码校验
-``` javascript
+### 普通校验（手机号、邮箱、身份证号）
+```javascript
 const validatePhone = (rule, value, callback = () => {}) => {
-  if(!value) {
-    return callback(new Error('手机号码不能为空！'))
-  }
-  if(!/^1[3456789]\d{9}$/.test(value)) {
-    return callback(new Error('手机号码不正确！'))
-  }
-  return callback()
+    if(!value) {
+        return callback(new Error('手机号码不能为空！'))
+    }
+    if(!/^1[3456789]\d{9}$/.test(value)) {
+        return callback(new Error('手机号码不正确！'))
+    }
+    return callback()
+}
+const validateEmial = (rule, value, callback = () => {}) => {
+    if(!value) {
+        return callback(new Error('邮箱不能为空！'))
+    }
+    if(!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value)) {
+        return callback(new Error('邮箱格式不正确！'))
+    }
+    return callback()
+}
+const validateIdCard = (rule, value, callback = () => {}) => {
+    if(!value) {
+        return callback(new Error('身份证号不能为空！'))
+    }
+    if(!/^[1-9]\d{5}(?:18|19|20|21|22)\d{2}(?:0[1-9]|10|11|12)(?:0[1-9]|[1-2]\d|30|31)\d{3}[$/.test(value)) {
+        return callback(new Error('身份证号不正确！'))
+    }
+    return callback()
 }
 ```
-### 身份证号码校验
-``` javascript
+### 身份证号校验（号码+区号）
+```javascript
 const areaCode = '1100,1101,1102,1200,1201,1202,1300,1301,1302,1303,1304,1305,1306,1307,1308,1309,1310,1311,1400,1401,1402,1403,1404,1405,1406,1407,1408,1409,1410,1411,1500,1501,1502,1503,1504,1505,1506,1507,1508,1509,1522,1525,1526,1529,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2200,2201,2202,2203,2204,2205,2206,2207,2208,2224,2300,2301,2302,2303,2304,2305,2306,2307,2308,2309,2310,2311,2312,2327,3100,3101,3102,3200,3201,3202,3203,3204,3205,3206,3207,3208,3209,3210,3211,3212,3213,3300,3301,3302,3303,3304,3305,3306,3307,3308,3309,3310,3311,3400,3401,3402,3403,3404,3405,3406,3407,3408,3410,3411,3412,3413,3414,3415,3416,3417,3418,3500,3501,3502,3503,3504,3505,3506,3507,3508,3509,3600,3601,3602,3603,3604,3605,3606,3607,3608,3609,3610,3611,3700,3701,3702,3703,3704,3705,3706,3707,3708,3709,3710,3711,3712,3713,3714,3715,3716,3717,4100,4101,4102,4103,4104,4105,4106,4107,4108,4109,4110,4111,4112,4113,4114,4115,4116,4117,4200,4201,4202,4203,4205,4206,4207,4208,4209,4210,4211,4212,4213,4228,4290,4300,4301,4302,4303,4304,4305,4306,4307,4308,4309,4310,4311,4312,4313,4331,4400,4401,4402,4403,4404,4405,4406,4407,4408,4409,4412,4413,4414,4415,4416,4417,4418,4419,4420,4451,4452,4453,4500,4501,4502,4503,4504,4505,4506,4507,4508,4509,4510,4511,4512,4513,4514,4600,4601,4602,4690,5000,5001,5002,5003,5100,5101,5103,5104,5105,5106,5107,5108,5109,5110,5111,5113,5114,5115,5116,5117,5118,5119,5120,5132,5133,5134,5200,5201,5202,5203,5204,5222,5223,5224,5226,5227,5300,5301,5303,5304,5305,5306,5307,5308,5309,5323,5325,5326,5328,5329,5331,5333,5334,5400,5401,5421,5422,5423,5424,5425,5426,6100,6101,6102,6103,6104,6105,6106,6107,6108,6109,6110,6200,6201,6202,6203,6204,6205,6206,6207,6208,6209,6210,6211,6226,6229,6230,6300,6301,6321,6322,6323,6325,6326,6327,6328,6400,6401,6402,6403,6404,6405,6500,6501,6502,6521,6522,6523,6527,6528,6529,6530,6531,6532,6540,6542,6543,6590,7100,8100,8200'
 const validateIdCard = (rule, value, callback = () => {}) => {
   if(!value) {
@@ -222,7 +247,7 @@ const validateIdCard = (rule, value, callback = () => {}) => {
 }
 ```
 ### 根据身份证号计算内容
-``` javascript
+```javascript
 computeIdCardFn(IdCard, type) {
   if(!IdCard) {
     return ''
@@ -263,7 +288,7 @@ computeIdCardFn(IdCard, type) {
 ## VUE加载自动触发元素点击事件
 
 ### SubTemplate
-``` javascript
+```javascript
 directives: {
   trigger: {
     triggerFlag: false,
@@ -282,20 +307,20 @@ methods: {},
 ## Javascript数组内容
 
 ### filter()
-``` javascript
+```javascript
 // 过滤
 let numArr = [0, 1, 2, 3, 4, 5, 6, 7]
 let res = numArr.filter(num => num >= 5)
 console.log(res) // [5, 6, 7]
 ``` 
 ### 重复判断
-``` javascript
+```javascript
 // 判断数组中是否有重复内容
 let tempArr = [1, 2, 2, 3]
 Array.from(new Set(tempArr)).length < tempArr.length
 ``` 
 ### 数组内容移动
-``` javascript
+```javascript
 // 上移
 this.tempArr[index] = this.tempArr.splice(index - 1, 1, this.tempArr[index])[0]
 // 下移
@@ -305,7 +330,7 @@ this.tempArr[index] = this.tempArr.splice(index + 1, 1, this.tempArr[index])[0]
 ## 页面事件监听
 
 ### 监听离开
-``` javascript
+```javascript
 fn() {
 	// 离开时监听触发
 }

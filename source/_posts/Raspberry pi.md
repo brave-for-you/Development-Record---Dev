@@ -118,6 +118,12 @@ tags:
     # 退出MySQL执行
     systemctl restart mysql # 重启mysql，执行后选择账户输入密码即可
 
+    cd /etc/mysql # 配置文件下的bind-host改为0.0.0.0，允许任意远程登录
+
+    # mysql内执行
+    create user 'example'@'%' identified by 'example123'; # 创建用户
+    grant all on example.* to 'example'@'%'; # 指定访问数据库
+    flush privileges; # 更新配置信息
 ```
 ### 安装node
 ```shell
@@ -149,6 +155,9 @@ tags:
     pm2 stop app.js
     # 查看服务状态
     pm2 monit
+    pm2 list
+    # 同步进程
+    pm2 save
 ```
 
 
