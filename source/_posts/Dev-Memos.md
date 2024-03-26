@@ -1,6 +1,6 @@
 ---
 title: Dev-Memos
-date: 2023-06-15 10:29:07
+date: 2024-03-26 16:30:00
 tags:
 ---
 一些感觉有意思的代码片段记录，持续更新记录...
@@ -46,27 +46,27 @@ handleToSetTimerFn(timeStamp) {
 	m<10&&(m="0"+m)
 	s = Math.floor(t%60)
 	let _thisTemp = this
-	timer = setInterval(function() {
+	timer = setInterval(() => {
 		s--
-		s<10&&(s="0"+s)
-		if(s.length>=3) {
+		s< 10 && (s = "0" + s)
+		if (s.length >= 3) {
 			s = 59
-			m = (Number(m)-1)
-			m<10&&(m="0"+m)
+			m = (Number(m) - 1)
+			m < 10 && (m = "0" + m)
 		}
-		if(m.length>=3) {
+		if (m.length >= 3) {
 			m = 59
-			h = (Number(h)-1)
-			h<10&&(h="0"+h)
+			h = (Number(h) - 1)
+			h < 10 && (h = "0" + h)
 		}
-		if(h.length>=3) {
+		if (h.length >= 3) {
 			h = "00"
 			m = "00"
 			s = "00"
 			clearInterval(timer)
 		}
 		_thisTemp.timerStr = (h + ":" + m + ":" + s)
-	},1000)
+	}, 1000)
 }
 ```
 ### 秒转换时分秒（10:00:00）
@@ -107,11 +107,76 @@ _handleToCompareTime(tempStartTimeStr, tempEndTimeStr) {
 	}
 }
 ```
+### 判断对比输入日期与当前日期
+```javascript
+_handleToCompareTime(dateString) {
+  if (!dateString) {
+    return false
+  }
+  const currentDate = new Date() // 获取当前日期
+  const inputDate = new Date(dateString) // 将输入的日期字符串转换为Date对象
+  if (inputDate > currentDate) {
+    return false // 如果输入的日期大于当前日期
+  }
+  return true // 输入日期小于或等于当前日期
+}
+_handleToCompareTime('2024-05-01')
+```
+### 时间格式化
+```javascript
+dateFormat(date, format) {
+    const zeroPadding = (i) => {
+        return (i < 10 ? '0' : '') + i
+    }
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (item) {
+        switch (item) {
+            case 'yyyy':
+                return zeroPadding(date.getFullYear())
+            case 'MM':
+                return zeroPadding(date.getMonth() + 1)
+            case 'dd':
+                return zeroPadding(date.getDate())
+            case 'HH':
+                return zeroPadding(date.getHours())
+            case 'mm':
+                return zeroPadding(date.getMinutes())
+            case 'ss':
+                return zeroPadding(date.getSeconds())
+        }
+    })
+}
+dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss')
+```
+### 时间格式化 一年前的时间
+```javascript
+oldDateFormat(date, format) {
+    const zeroPadding = (i) => {
+        return (i < 10 ? '0' : '') + i
+    }
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (item) {
+        switch (item) {
+            case 'yyyy':
+                return zeroPadding(date.getFullYear() - 1)
+            case 'MM':
+                return zeroPadding(date.getMonth() + 1)
+            case 'dd':
+                return zeroPadding(date.getDate())
+            case 'HH':
+                return zeroPadding(date.getHours())
+            case 'mm':
+                return zeroPadding(date.getMinutes())
+            case 'ss':
+                return zeroPadding(date.getSeconds())
+        }
+    })
+}
+dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss')
+```
 ### ElementUi日期组件
 ```javascript
     // ElementUi组件禁用当前时间前2天后5天以外的内容
     disabledDate: (date) => {
-        return date.getTime() < Date.now() - 2 * 24 * 60 * 60 * 1000 || date.getTime() > Date.now() + 5 * 24 * 60 * 60 * 1000;
+        return date.getTime() < Date.now() - 2 * 24 * 60 * 60 * 1000 || date.getTime() > Date.now() + 5 * 24 * 60 * 60 * 1000
     }
 ```
 
@@ -148,6 +213,133 @@ convertBase64UrlToBlob(urlData) {
   return new Blob([ab], {type: 'image/jpg'})
 }
 ``` 
+### img转Base64
+```javascript
+convertBlobToBase64Url(file) {
+    return new Promise((resolve, reject) => {
+        let image = new Image()
+        image.src = URL.createObjectURL(file)
+        image.onload = function () {
+            let canvas = document.createElement('canvas')
+            let content = canvas.getContext('2d')
+            canvas.width = image.width
+            canvas.height = image.height
+            content.drawImage(image, 0, 0, canvas.width, canvas.height)
+            resolve(canvas.toDataURL(file.type))
+            canvas.width = canvas.height = 0
+            content.fillRect(0, 0, 0, 0)
+            canvas = null
+            content = null
+            image = null
+        }
+        image.onerror = function (event, source, lineno, colno, error) {
+            if (error) {
+                console.error(event, source, lineno, colno, error)
+                reject(error)
+                image = null
+            }
+        }
+    })
+}
+``` 
+### 获取图片
+```javascript
+export function chooseImage(option) {
+    try {
+        const imageInput = document.createElement('input')
+        imageInput.type = 'file'
+        imageInput.accept = 'image/*'
+        if (option.sourceType === 'camera') {
+            imageInput.capture = 'environment'
+        }
+        imageInput.style.height = '0px'
+        imageInput.style.width = '0px'
+        imageInput.style.position = 'fixed'
+        imageInput.style.left = '0px'
+        imageInput.style.top = '0px'
+        imageInput.style.visibility = 'hidden'
+        document.getElementsByTagName('body')[0].appendChild(imageInput)
+        imageInput.onchange = async function (e) {
+            if (e.target.files.length) {
+                let image = e.target.files[0]
+                let gifFlag = image.type.includes('gif')
+                // 设置了压缩但是图片为gif图片打印错误提示
+                if (option.compress && gifFlag) {
+                    console.log('\n')
+                    console.warn('前端不具备压缩gif动图的能力，请服务端处理');
+                    console.log('\n')
+                }
+                // 不是gif图片 设置了压缩 并且 大于1.8M才会触发压缩
+                const compress = !gifFlag && option.compress && image.size > 1572864
+                // 达到压缩条件开始压缩
+                if (compress) {
+                    // 大于1.8M才会触发压缩
+                    image = await compressImageHandler(image)
+                }
+                const result = {
+                    file: image,
+                    name: image.name,
+                    size: image.size,
+                    path: !compress || gifFlag ? URL.createObjectURL(image) : await imageToBase64Handler(image),
+                    type: image.type,
+                }
+                typeof option.success === 'function' && option.success(result)
+                typeof option.complete === 'function' && option.complete(result)
+                imageInput.remove()
+            }
+        }
+        imageInput.click()
+    } catch (e) {
+        typeof option.fail === 'function' && option.fail(e)
+        typeof option.complete === 'function' && option.complete(e)
+    }
+}
+chooseImage({
+  success: (data) => {}
+})
+``` 
+### 选取视频
+```javascript
+export function chooseVideo(option = {}) {
+    try {
+        const fileInput = document.createElement('input')
+        fileInput.type = 'file'
+        fileInput.accept = 'video/*'
+        if (option.sourceType === 'camera') {
+            fileInput.capture = option.camera ? (option.camera === 'front' ? 'user' : 'environment') : 'user'
+        }
+        fileInput.style.height = '0px'
+        fileInput.style.width = '0px'
+        fileInput.style.position = 'fixed'
+        fileInput.style.left = '0px'
+        fileInput.style.top = '0px'
+        fileInput.style.visibility = 'hidden'
+        document.getElementsByTagName('body')[0].appendChild(fileInput)
+        fileInput.onchange = function (e) {
+            if (e.target.files.length) {
+                const file = e.target.files[0]
+                const result = {
+                    file,
+                    name: file.name,
+                    size: file.size,
+                    path: URL.createObjectURL(file),
+                    type: file.type,
+                }
+                typeof option.success === 'function' && option.success(result)
+                typeof option.complete === 'function' && option.complete(result)
+                fileInput.remove()
+            }
+        }
+        fileInput.click()
+    } catch (e) {
+        typeof option.fail === 'function' && option.fail(e)
+        typeof option.complete === 'function' && option.complete(e)
+    }
+}
+chooseVideo({
+  success: (data) => {}
+})
+``` 
 
 ## 字符串内容
 
@@ -159,7 +351,7 @@ const a = /[0-9]/.exec(Str) != null ? 1 : 0
 ```javascript
 const a = /[a-zA-Z]/.exec(Str) != null ? 1 : 0
 ``` 
-### 营业执照校验
+### 营业执照统一信用编码校验
 ```javascript
 const reg = /[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/.exec(Str)
 ``` 
@@ -227,6 +419,72 @@ const validateIdCard = (rule, value, callback = () => {}) => {
         return callback(new Error('身份证号不正确！'))
     }
     return callback()
+}
+```
+### 首字母大写
+```javascript
+export function firstChartToUpperCase(str) {
+    if (typeof str === 'string') {
+        return str.charAt(0).toUpperCase() + str.substr(1)
+    }
+    return str
+}
+```
+### 字符串转驼峰
+```javascript
+export function stringTurnHump(str, symbol = '-') {
+    if (typeof str === 'string') {
+        return str.split(symbol).map((value, index) => (index > 0 ? firstChartToUpperCase(value) : value)).join('')
+    }
+    return str
+}
+```
+### css字符串转JS对象
+```javascript
+export function stringTurnObjectForCSS(cssString) {
+    if (cssString) {
+        return Object.fromEntries(cssString.split(';').map((value) => value.split(':').map((val, index) => (index === 0 ? stringTurnHump(val) : val))))
+    }
+    return cssString
+}
+```
+### 手机号脱敏
+```javascript
+export function formatPhone(phoneNumber) {
+    const result = checkPhoneNumber(phoneNumber)
+    if (result.success) {
+        return phoneNumber.toString().replace(/(.{4})(.{4})(.{3})/, '$1****$3')
+    }
+    return result.message
+}
+```
+### 脱敏银行卡号
+```javascript
+export function desensitizeBankCardNumber(cardNumber) {
+    const str = String(cardNumber)
+    return str.substring(str.length - 4)
+}
+```
+### 金额转换千分位格式
+```javascript
+/**
+ * 金额转换千分位格式
+ * @param money 需转换的金额
+ * @param fixedLength {number|null} 保留几位小数 false 不处理
+ * @returns {string|*}
+ */
+export function convertThousandth(money, fixedLength = null) {
+    if (isNaN(Number(money))) {
+        return money
+    }
+    let _money = Number(money).toString()
+    if (typeof fixedLength === 'number' && !isNaN(fixedLength)) {
+        _money = toFixed(money, fixedLength)
+    }
+    if (_money.indexOf('.') === -1) {
+        return _money.replace(/\B(?=(?:\d{3})+\b)/g, ',')
+    }
+    return _money.replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
 }
 ```
 ### 身份证号校验（号码+区号）
@@ -345,18 +603,18 @@ window.removeEventListener('visibilitychange', this.fn)
 ## Css内容
 
 ### 线性渐变背景颜色
-``` css
+```css
 /* css线性渐变背景颜色 */
 background: linear-gradient(to right , #ffce7b, #ff6609);
 ``` 
 ### 右上角三角标
-``` css
+```css
 /* css右上角三角标 */
 background-image: linear-gradient(225deg, #f44336 20%, #00dd00 20%);
 ``` 
 
 ## 移动端Debug
-``` html
+```html
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
 	 // VConsole 默认会挂载到 `window.VConsole` 上
@@ -365,7 +623,7 @@ background-image: linear-gradient(225deg, #f44336 20%, #00dd00 20%);
 ```
 
 ## ssh
-``` sh
+```sh
 # 生成公钥私钥配对
 $ ssh-keygen -t ed25519 -C "邮箱"
 # git基础信息设置
