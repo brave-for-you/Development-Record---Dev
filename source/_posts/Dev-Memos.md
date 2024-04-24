@@ -11,8 +11,8 @@ tags:
 ```javascript
 compileStr(code) {
   let c = String.fromCharCode(code.charCodeAt(0) + code.length)
-  for(let i=1;i<code.length;i++) {
-    c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i-1))
+  for(let i = 1; i < code.length; i++) {
+    c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1))
   }
   return escape(c)
 }
@@ -22,8 +22,8 @@ compileStr(code) {
 unCompileStr(str) {
   const code = unescape(str)
   let c = String.fromCharCode(code.charCodeAt(0) - code.length)
-  for(let i=1;i<code.length;i++) {
-    c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i-1))
+  for(let i = 1; i < code.length; i++) {
+    c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1))
   }
   return c
 }
@@ -40,15 +40,15 @@ handleToSetTimerFn(timeStamp) {
 	let h = 0
 	let m = 0
 	let s = 0
-	h = Math.floor(t/(60*60))
-	h<10&&(h="0"+h)
-	m = Math.floor(t/60%60)
-	m<10&&(m="0"+m)
-	s = Math.floor(t%60)
+	h = Math.floor(t / (60 * 60))
+	h < 10 && (h = "0" + h)
+	m = Math.floor(t / 60 % 60)
+	m < 10 && (m = "0" + m)
+	s = Math.floor(t % 60)
 	let _thisTemp = this
 	timer = setInterval(() => {
 		s--
-		s< 10 && (s = "0" + s)
+		s < 10 && (s = "0" + s)
 		if (s.length >= 3) {
 			s = 59
 			m = (Number(m) - 1)
@@ -219,7 +219,7 @@ convertBlobToBase64Url(file) {
     return new Promise((resolve, reject) => {
         let image = new Image()
         image.src = URL.createObjectURL(file)
-        image.onload = function () {
+        image.onload = () => {
             let canvas = document.createElement('canvas')
             let content = canvas.getContext('2d')
             canvas.width = image.width
@@ -232,7 +232,7 @@ convertBlobToBase64Url(file) {
             content = null
             image = null
         }
-        image.onerror = function (event, source, lineno, colno, error) {
+        image.onerror = (event, source, lineno, colno, error) => {
             if (error) {
                 console.error(event, source, lineno, colno, error)
                 reject(error)
