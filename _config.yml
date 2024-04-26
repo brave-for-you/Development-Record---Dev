@@ -104,10 +104,12 @@ theme: hexo-theme-matery ## landscape
 deploy:
   type: ''
 
+# 搜索
 search:
   path: search.xml
   field: post
-  
+
+# 拼音
 permalink_pinyin:
   enable: true
   separator: '-' # default: '-'
