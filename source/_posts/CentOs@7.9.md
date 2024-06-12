@@ -1,6 +1,6 @@
 ---
-title: Raspberry pi
-date: 2024-04-16 11:10:00
+title: CentOs@7.9
+date: 2024-05-01
 tags:
 ---
 关于CentOs@7.9 初次使用注意以及基本内容，持续完善中...

@@ -1,6 +1,6 @@
 ---
 title: Django
-date: 2023-11-10 08:00:00
+date: 2024-05-01
 tags:
 ---
 关于Python的服务端框架-Django(有大量的基础服务内容，可创建多模块分配)。当前使用环境：python --version 3.11.1、pip --version 23.3.1。

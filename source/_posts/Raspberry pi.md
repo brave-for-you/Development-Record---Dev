@@ -1,6 +1,6 @@
 ---
 title: Raspberry pi
-date: 2023-10-16 15:00:00
+date: 2024-05-01
 tags:
 ---
 关于Raspberry 初次使用注意以及基本内容，持续完善中...
