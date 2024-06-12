@@ -1,6 +1,6 @@
 ---
 title: friends
-date: 2024-04-24 14:24:12
+date: 2024-05-01
 type: "friends"
 layout: "friends"
 ---

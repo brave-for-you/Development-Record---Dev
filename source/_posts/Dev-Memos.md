@@ -10,22 +10,22 @@ tags:
 ### 加密
 ```javascript
 compileStr(code) {
-  let c = String.fromCharCode(code.charCodeAt(0) + code.length)
-  for(let i = 1; i < code.length; i++) {
-    c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1))
-  }
-  return escape(c)
+    let c = String.fromCharCode(code.charCodeAt(0) + code.length)
+    for(let i = 1; i < code.length; i++) {
+        c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1))
+    }
+    return escape(c)
 }
 ```
 ### 解密
 ```javascript
 unCompileStr(str) {
-  const code = unescape(str)
-  let c = String.fromCharCode(code.charCodeAt(0) - code.length)
-  for(let i = 1; i < code.length; i++) {
-    c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1))
-  }
-  return c
+    const code = unescape(str)
+    let c = String.fromCharCode(code.charCodeAt(0) - code.length)
+    for(let i = 1; i < code.length; i++) {
+        c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1))
+    }
+    return c
 }
 ```
 
@@ -72,22 +72,22 @@ handleToSetTimerFn(timeStamp) {
 ### 秒转换时分秒（10:00:00）
 ```javascript
 handleformatSeconds(value) {
-  if(!value) {
-    return 0
-  }
-  let second = parseInt(value)
-  let minute = 0
-  let hour = 0
-  if (second > 60) {
-    minute = parseInt(second / 60)
-    second = parseInt(second % 60)
-    if (minute > 60) {
-      hour = parseInt(minute / 60)
-      minute = parseInt(minute % 60)
+    if(!value) {
+        return 0
     }
-  }
-  const result = (parseInt(hour) >= 10 ? parseInt(hour) : '0' + parseInt(hour)) + ':' + (parseInt(minute) >= 10 ? parseInt(minute) : '0' + parseInt(minute)) +':'+ (parseInt(second) >= 10 ? parseInt(second) : '0' + parseInt(second))
-  return result
+    let second = parseInt(value)
+    let minute = 0
+    let hour = 0
+    if (second > 60) {
+        minute = parseInt(second / 60)
+        second = parseInt(second % 60)
+        if (minute > 60) {
+            hour = parseInt(minute / 60)
+            minute = parseInt(minute % 60)
+        }
+    }
+    const result = (parseInt(hour) >= 10 ? parseInt(hour) : '0' + parseInt(hour)) + ':' + (parseInt(minute) >= 10 ? parseInt(minute) : '0' + parseInt(minute)) +':'+ (parseInt(second) >= 10 ? parseInt(second) : '0' + parseInt(second))
+    return result
 }
 ```
 ### 时间范围与当前时间前后对比
@@ -110,15 +110,15 @@ _handleToCompareTime(tempStartTimeStr, tempEndTimeStr) {
 ### 判断对比输入日期与当前日期
 ```javascript
 _handleToCompareTime(dateString) {
-  if (!dateString) {
-    return false
-  }
-  const currentDate = new Date() // 获取当前日期
-  const inputDate = new Date(dateString) // 将输入的日期字符串转换为Date对象
-  if (inputDate > currentDate) {
-    return false // 如果输入的日期大于当前日期
-  }
-  return true // 输入日期小于或等于当前日期
+    if (!dateString) {
+        return false
+    }
+    const currentDate = new Date() // 获取当前日期
+    const inputDate = new Date(dateString) // 将输入的日期字符串转换为Date对象
+    if (inputDate > currentDate) {
+        return false // 如果输入的日期大于当前日期
+    }
+    return true // 输入日期小于或等于当前日期
 }
 _handleToCompareTime('2024-05-01')
 ```
@@ -185,17 +185,17 @@ dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss')
 ### 文件流下载
 ```javascript
 handleReturnDownloadFile(content,filename) {
-  let eleLink = document.createElement('a')
-  eleLink.download = filename
-  eleLink.style.display = 'none'
-  // 字符内容转变成blob地址 
-  let url= window.URL.createObjectURL(new Blob([data], { type: 'application/octet-stream' }))
-  eleLink.href = url 
-  // 自动触发点击 
-  document.body.appendChild(eleLink)
-  eleLink.click()
-  // 然后移除 
-  document.body.removeChild(eleLink)
+    let eleLink = document.createElement('a')
+    eleLink.download = filename
+    eleLink.style.display = 'none'
+    // 字符内容转变成blob地址 
+    let url= window.URL.createObjectURL(new Blob([data], { type: 'application/octet-stream' }))
+    eleLink.href = url 
+    // 自动触发点击 
+    document.body.appendChild(eleLink)
+    eleLink.click()
+    // 然后移除 
+    document.body.removeChild(eleLink)
 	//释放
 	window.URL.revokeObjectURL(url)
 }
@@ -203,14 +203,14 @@ handleReturnDownloadFile(content,filename) {
 ### Base64转img
 ```javascript
 convertBase64UrlToBlob(urlData) {
-  let bytes = window.atob(urlData)
-  // 处理异常,将ascii码小于0的转换为大于0
-  let ab = new ArrayBuffer(bytes.length)
-  let ia = new Uint8Array(ab)
-  for (let i = 0; i < bytes.length; i++) {
-    ia[i] = bytes.charCodeAt(i)
-  }
-  return new Blob([ab], {type: 'image/jpg'})
+    let bytes = window.atob(urlData)
+    // 处理异常,将ascii码小于0的转换为大于0
+    let ab = new ArrayBuffer(bytes.length)
+    let ia = new Uint8Array(ab)
+    for (let i = 0; i < bytes.length; i++) {
+        ia[i] = bytes.charCodeAt(i)
+    }
+    return new Blob([ab], {type: 'image/jpg'})
 }
 ``` 
 ### img转Base64
@@ -345,29 +345,29 @@ chooseVideo({
 
 ### 数字校验
 ```javascript
-const a = /[0-9]/.exec(Str) != null ? 1 : 0
+    const a = /[0-9]/.exec(Str) != null ? 1 : 0
 ``` 
 ### 字母校验
 ```javascript
-const a = /[a-zA-Z]/.exec(Str) != null ? 1 : 0
+    const a = /[a-zA-Z]/.exec(Str) != null ? 1 : 0
 ``` 
 ### 营业执照统一信用编码校验
 ```javascript
-const reg = /[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/.exec(Str)
+    const reg = /[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/.exec(Str)
 ``` 
 ### 字节统计
 ```javascript
 handleToCountStrLength(str) {
-  let len = 0
-  for (let i = 0; i < str.length; i++) { 
-    let c = str.charAt(i)
-    if (/^[\u0000-\u00ffA-Za-z1-9]+$/.test(c)) { 
-      len += 1
-    } else { 
-      len += 2
-    } 
-  }
-  return len
+    let len = 0
+    for (let i = 0; i < str.length; i++) { 
+        let c = str.charAt(i)
+        if (/^[\u0000-\u00ffA-Za-z1-9]+$/.test(c)) { 
+            len += 1
+        } else { 
+            len += 2
+        } 
+    }
+    return len
 }
 ``` 
 ### 字符串转大写
@@ -380,15 +380,15 @@ console.log(str) // ABC
 ```javascript
 //  @input="scope.row.accountNo = handleToCheckValFn(scope.row.accountNo)"
 _handleToCheckValFn(val) {
-  const regex = /^[A-Z]+$/ // 只填大写字母
-  // const regex = /^[0-9]+$/ // 只填数字
-  let tempStr = ""
-  for(let i in val) {
-    if(regex.test(val[i])) {
-      tempStr += val[i]
+    const regex = /^[A-Z]+$/ // 只填大写字母
+    // const regex = /^[0-9]+$/ // 只填数字
+    let tempStr = ""
+    for(let i in val) {
+        if(regex.test(val[i])) {
+            tempStr += val[i]
+        }
     }
-  }
-  return tempStr
+    return tempStr
 }
 ```
 ### 普通校验（手机号、邮箱、身份证号）
@@ -491,54 +491,54 @@ export function convertThousandth(money, fixedLength = null) {
 ```javascript
 const areaCode = '1100,1101,1102,1200,1201,1202,1300,1301,1302,1303,1304,1305,1306,1307,1308,1309,1310,1311,1400,1401,1402,1403,1404,1405,1406,1407,1408,1409,1410,1411,1500,1501,1502,1503,1504,1505,1506,1507,1508,1509,1522,1525,1526,1529,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2200,2201,2202,2203,2204,2205,2206,2207,2208,2224,2300,2301,2302,2303,2304,2305,2306,2307,2308,2309,2310,2311,2312,2327,3100,3101,3102,3200,3201,3202,3203,3204,3205,3206,3207,3208,3209,3210,3211,3212,3213,3300,3301,3302,3303,3304,3305,3306,3307,3308,3309,3310,3311,3400,3401,3402,3403,3404,3405,3406,3407,3408,3410,3411,3412,3413,3414,3415,3416,3417,3418,3500,3501,3502,3503,3504,3505,3506,3507,3508,3509,3600,3601,3602,3603,3604,3605,3606,3607,3608,3609,3610,3611,3700,3701,3702,3703,3704,3705,3706,3707,3708,3709,3710,3711,3712,3713,3714,3715,3716,3717,4100,4101,4102,4103,4104,4105,4106,4107,4108,4109,4110,4111,4112,4113,4114,4115,4116,4117,4200,4201,4202,4203,4205,4206,4207,4208,4209,4210,4211,4212,4213,4228,4290,4300,4301,4302,4303,4304,4305,4306,4307,4308,4309,4310,4311,4312,4313,4331,4400,4401,4402,4403,4404,4405,4406,4407,4408,4409,4412,4413,4414,4415,4416,4417,4418,4419,4420,4451,4452,4453,4500,4501,4502,4503,4504,4505,4506,4507,4508,4509,4510,4511,4512,4513,4514,4600,4601,4602,4690,5000,5001,5002,5003,5100,5101,5103,5104,5105,5106,5107,5108,5109,5110,5111,5113,5114,5115,5116,5117,5118,5119,5120,5132,5133,5134,5200,5201,5202,5203,5204,5222,5223,5224,5226,5227,5300,5301,5303,5304,5305,5306,5307,5308,5309,5323,5325,5326,5328,5329,5331,5333,5334,5400,5401,5421,5422,5423,5424,5425,5426,6100,6101,6102,6103,6104,6105,6106,6107,6108,6109,6110,6200,6201,6202,6203,6204,6205,6206,6207,6208,6209,6210,6211,6226,6229,6230,6300,6301,6321,6322,6323,6325,6326,6327,6328,6400,6401,6402,6403,6404,6405,6500,6501,6502,6521,6522,6523,6527,6528,6529,6530,6531,6532,6540,6542,6543,6590,7100,8100,8200'
 const validateIdCard = (rule, value, callback = () => {}) => {
-  if(!value) {
-    return callback(new Error('身份证号不能为空！'))
-  }
-  if(!/^[1-9]\d{5}(?:18|19|20|21|22)\d{2}(?:0[1-9]|10|11|12)(?:0[1-9]|[1-2]\d|30|31)\d{3}[\dX]$/.test(value)) {
-      return callback(new Error('身份证号不正确！'))
-  }
-  // 前4位区号有效验证
-  if(!areaCode.includes(value.slice(0, 3))) {
-    return callback(new Error('身份证号不正确！'))
-  }
-  return callback()
+    if(!value) {
+        return callback(new Error('身份证号不能为空！'))
+    }
+    if(!/^[1-9]\d{5}(?:18|19|20|21|22)\d{2}(?:0[1-9]|10|11|12)(?:0[1-9]|[1-2]\d|30|31)\d{3}[\dX]$/.test(value)) {
+        return callback(new Error('身份证号不正确！'))
+    }
+    // 前4位区号有效验证
+    if(!areaCode.includes(value.slice(0, 3))) {
+        return callback(new Error('身份证号不正确！'))
+    }
+    return callback()
 }
 ```
 ### 根据身份证号计算内容
 ```javascript
 computeIdCardFn(IdCard, type) {
-  if(!IdCard) {
-    return ''
-  }
-  if (type === 1) {
-    //获取出生日期
-    let birthday = IdCard.substring(6, 10) + '-' + IdCard.substring(10, 12) + '-' + IdCard.substring(12, 14)
-    return birthday
-  }
-  if (type === 2) {
-    let sex = ''
-    //获取性别
-    if (parseInt(IdCard.substr(16, 1)) % 2 === 1) {
-      sex = '男'
-    }else {
-      sex = '女'
+    if(!IdCard) {
+        return ''
     }
-    return sex
-  }
-  if (type === 3) {
-    //获取年龄
-    let ageDate = new Date()
-    let month = ageDate.getMonth() + 1
-    let day = ageDate.getDate()
-    let age = ageDate.getFullYear() - IdCard.substring(6, 10) - 1
-    if (IdCard.substring(10, 12) < month || IdCard.substring(10, 12) === month && IdCard.substring(12, 14) <= day) {
-      age++
+    if (type === 1) {
+        // 获取出生日期
+        let birthday = IdCard.substring(6, 10) + '-' + IdCard.substring(10, 12) + '-' + IdCard.substring(12, 14)
+        return birthday
     }
-    if (age <= 0) {
-      age = 1
+    if (type === 2) {
+        let sex = ''
+        // 获取性别
+        if (parseInt(IdCard.substr(16, 1)) % 2 === 1) {
+            sex = '男'
+        }else {
+            sex = '女'
+        }
+        return sex
     }
-    return age
-  }
+    if (type === 3) {
+        // 获取年龄
+        let ageDate = new Date()
+        let month = ageDate.getMonth() + 1
+        let day = ageDate.getDate()
+        let age = ageDate.getFullYear() - IdCard.substring(6, 10) - 1
+        if (IdCard.substring(10, 12) < month || IdCard.substring(10, 12) === month && IdCard.substring(12, 14) <= day) {
+            age++
+        }
+        if (age <= 0) {
+            age = 1
+        }
+        return age
+    }
 }
 ```
 
@@ -548,16 +548,16 @@ computeIdCardFn(IdCard, type) {
 ### SubTemplate
 ```javascript
 directives: {
-  trigger: {
-    triggerFlag: false,
-    inserted(el,binging) {
-      if(binging.def.triggerFlag) {
-        return
-      }
-      el.click()
-      binging.def.triggerFlag = true
+    trigger: {
+        triggerFlag: false,
+        inserted(el,binging) {
+            if(binging.def.triggerFlag) {
+                return
+            }
+            el.click()
+            binging.def.triggerFlag = true
+        }
     }
-  }
 },
 methods: {},
 ``` 
