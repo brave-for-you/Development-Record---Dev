@@ -1,7 +1,8 @@
 ---
 title: Media Server
 date: 2024-05-01
-tags:
+tags: ffmpeg
+categories: ffmpeg
 ---
 > 关于推流、拉流命令行控制及开发依赖
 > // 后管地址 127.0.0.1:8000/admin/

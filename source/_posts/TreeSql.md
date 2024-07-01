@@ -1,7 +1,8 @@
 ---
 title: 树状表Sql
 date: 2024-05-01
-tags:
+tags: mysql
+categories: 数据库
 ---
 > 只记录了左右值和路径值的树型结构，个人感觉路径值更好用一点
 

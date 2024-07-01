@@ -1,7 +1,8 @@
 ---
 title: Dev-Memos
 date: 2024-05-01
-tags:
+tags: JavaScript
+categories: 前端
 ---
 一些感觉有意思的代码片段记录，持续更新记录...
 

@@ -1,7 +1,8 @@
 ---
 title: Raspberry pi
 date: 2024-05-01
-tags:
+tags: Raspberry pi
+categories: 树莓派
 ---
 > 关于Raspberry 初次使用注意以及基本内容，持续完善中...
 

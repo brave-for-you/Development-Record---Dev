@@ -1,7 +1,8 @@
 ---
 title: CentOs@7.9
 date: 2024-05-01
-tags:
+tags: CentOs
+categories: 服务器
 ---
 > 关于CentOs@7.9 初次使用注意以及基本内容，持续完善中...
 
