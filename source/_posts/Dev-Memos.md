@@ -41,31 +41,31 @@ handleToSetTimerFn(timeStamp) {
 	let m = 0
 	let s = 0
 	h = Math.floor(t / (60 * 60))
-	h < 10 && (h = "0" + h)
+	h < 10 && (h = '0' + h)
 	m = Math.floor(t / 60 % 60)
-	m < 10 && (m = "0" + m)
+	m < 10 && (m = '0' + m)
 	s = Math.floor(t % 60)
 	let _thisTemp = this
 	timer = setInterval(() => {
 		s--
-		s < 10 && (s = "0" + s)
+		s < 10 && (s = '0' + s)
 		if (s.length >= 3) {
 			s = 59
 			m = (Number(m) - 1)
-			m < 10 && (m = "0" + m)
+			m < 10 && (m = '0' + m)
 		}
 		if (m.length >= 3) {
 			m = 59
 			h = (Number(h) - 1)
-			h < 10 && (h = "0" + h)
+			h < 10 && (h = '0' + h)
 		}
 		if (h.length >= 3) {
-			h = "00"
-			m = "00"
-			s = "00"
+			h = '00'
+			m = '00'
+			s = '00'
 			clearInterval(timer)
 		}
-		_thisTemp.timerStr = (h + ":" + m + ":" + s)
+		_thisTemp.timerStr = (h + ':' + m + ':' + s)
 	}, 1000)
 }
 ```
@@ -378,11 +378,11 @@ console.log(str) // ABC
 ``` 
 ### 键盘输入限制只有大写字母
 ```javascript
-//  @input="scope.row.accountNo = handleToCheckValFn(scope.row.accountNo)"
+//  @input='scope.row.accountNo = handleToCheckValFn(scope.row.accountNo)'
 _handleToCheckValFn(val) {
     const regex = /^[A-Z]+$/ // 只填大写字母
     // const regex = /^[0-9]+$/ // 只填数字
-    let tempStr = ""
+    let tempStr = ''
     for(let i in val) {
         if(regex.test(val[i])) {
             tempStr += val[i]

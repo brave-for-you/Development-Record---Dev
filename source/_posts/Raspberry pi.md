@@ -3,7 +3,7 @@ title: Raspberry pi
 date: 2024-05-01
 tags:
 ---
-关于Raspberry 初次使用注意以及基本内容，持续完善中...
+> 关于Raspberry 初次使用注意以及基本内容，持续完善中...
 
 
 
