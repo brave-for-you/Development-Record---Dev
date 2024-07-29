@@ -9,6 +9,14 @@ categories: 服务器
 
 
 ## 首次启动
+### 创建文件夹&文件
+```shell
+cd /
+makedir myApp
+cd /myApp
+echo > myApp.txt
+echo '追加' >> myApp.txt
+```
 ### 新增用户
 ```shell
     adduser username

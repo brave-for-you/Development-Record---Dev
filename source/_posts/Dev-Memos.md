@@ -154,10 +154,11 @@ oldDateFormat(date, format) {
     const zeroPadding = (i) => {
         return (i < 10 ? '0' : '') + i
     }
+    date.setFullYear(date.getFullYear() - 1)
     return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (item) {
         switch (item) {
             case 'yyyy':
-                return zeroPadding(date.getFullYear() - 1)
+                return zeroPadding(date.getFullYear())
             case 'MM':
                 return zeroPadding(date.getMonth() + 1)
             case 'dd':
@@ -171,7 +172,7 @@ oldDateFormat(date, format) {
         }
     })
 }
-dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss')
+oldDateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss')
 ```
 ### ElementUi日期组件
 ```javascript
