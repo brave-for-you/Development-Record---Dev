@@ -4,31 +4,7 @@ date: 2024-05-01
 tags: JavaScript
 categories: 前端
 ---
-一些感觉有意思的代码片段记录，持续更新记录...
-
-## 加解密
-
-### 加密
-```javascript
-compileStr(code) {
-    let c = String.fromCharCode(code.charCodeAt(0) + code.length)
-    for(let i = 1; i < code.length; i++) {
-        c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1))
-    }
-    return escape(c)
-}
-```
-### 解密
-```javascript
-unCompileStr(str) {
-    const code = unescape(str)
-    let c = String.fromCharCode(code.charCodeAt(0) - code.length)
-    for(let i = 1; i < code.length; i++) {
-        c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1))
-    }
-    return c
-}
-```
+一些代码片段记录，持续更新...
 
 ## 时间内容
 
@@ -174,6 +150,19 @@ oldDateFormat(date, format) {
 }
 oldDateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss')
 ```
+### 3个月前的时间
+```javascript
+export const getDateBefore3MonthFn = (tempDate) => {
+    const beforeDateNum = tempDate.getDate()
+    tempDate.setMonth(tempDate.getDate() - 3)
+    const afterDateNum = tempDate.getDate()
+    if (beforeDateNum !== afterDateNum) {
+        tempDate.setDate(0)
+    }
+    tempDate.setDate(Number(tempDate.getDate()) + 1)
+    return tempDate
+}
+```
 ### ElementUi日期组件
 ```javascript
     // ElementUi组件禁用当前时间前2天后5天以外的内容
@@ -246,7 +235,7 @@ convertBlobToBase64Url(file) {
 ``` 
 ### 获取图片
 ```javascript
-export function chooseImage(option) {
+export const chooseImage = (option) => {
     try {
         const imageInput = document.createElement('input')
         imageInput.type = 'file'
@@ -545,26 +534,7 @@ computeIdCardFn(IdCard, type) {
 ```
 
 
-## VUE加载自动触发元素点击事件
-
-### SubTemplate
-```javascript
-directives: {
-    trigger: {
-        triggerFlag: false,
-        inserted(el,binging) {
-            if(binging.def.triggerFlag) {
-                return
-            }
-            el.click()
-            binging.def.triggerFlag = true
-        }
-    }
-},
-methods: {},
-``` 
-
-## Javascript数组内容
+## 数组内容
 
 ### filter()
 ```javascript
@@ -585,6 +555,51 @@ Array.from(new Set(tempArr)).length < tempArr.length
 this.tempArr[index] = this.tempArr.splice(index - 1, 1, this.tempArr[index])[0]
 // 下移
 this.tempArr[index] = this.tempArr.splice(index + 1, 1, this.tempArr[index])[0]
+```
+### 数组内容随机抽取（不重复）
+```javascript
+export const sample = (arr, count) => {
+    const result = new Set()
+    while (result.size < count) {
+        const index = Math.floor(Math.random() * arr.length)
+        result.add(arr[index])
+    }
+    return Array.from(result)
+}
+```
+
+
+
+## Css内容
+
+### 线性渐变背景颜色
+```css
+/* css线性渐变背景颜色 */
+background: linear-gradient(to right , #ffce7b, #ff6609);
+``` 
+### 右上角三角标
+```css
+/* css右上角三角标 */
+background-image: linear-gradient(225deg, #f44336 20%, #00dd00 20%);
+``` 
+
+## VUE
+
+### 加载自动触发元素点击事件
+```javascript
+directives: {
+    trigger: {
+        triggerFlag: false,
+        inserted(el,binging) {
+            if(binging.def.triggerFlag) {
+                return
+            }
+            el.click()
+            binging.def.triggerFlag = true
+        }
+    }
+},
+methods: {},
 ``` 
 
 ## 页面事件监听
@@ -602,19 +617,6 @@ window.addEventListener('visibilitychange', this.fn)
 window.removeEventListener('visibilitychange', this.fn)
 ```
 
-## Css内容
-
-### 线性渐变背景颜色
-```css
-/* css线性渐变背景颜色 */
-background: linear-gradient(to right , #ffce7b, #ff6609);
-``` 
-### 右上角三角标
-```css
-/* css右上角三角标 */
-background-image: linear-gradient(225deg, #f44336 20%, #00dd00 20%);
-``` 
-
 ## 移动端Debug
 ```html
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
@@ -625,15 +627,30 @@ background-image: linear-gradient(225deg, #f44336 20%, #00dd00 20%);
 ```
 
 ## ssh
+
+### git配置
 ```sh
-    # 生成公钥私钥配对
-    $ ssh-keygen -t ed25519 -C "邮箱"
-    # git基础信息设置
-    $ git config --global user.name ""
-    $ git config --global user.email ""
+# 生成公钥私钥配对
+$ ssh-keygen -t ed25519 -C "邮箱"
+# git基础信息设置
+$ git config --global user.name ""
+$ git config --global user.email ""
+```
+### 连接服务器
+```sh
+# 密码直接连接
+$ ssh userName@ip
+# 通过密钥证书连接
+$ ssh -i certName.pem userName@ip
+# 查看证书安装列表
+$ ssh-add -l
+# 安装证书（苹果电脑可能存在文件权限问题，可加sudo来跑命令）
+$ ssh-add certName.pem
 ```
 
 ## 正则
+
+### 正则基础
 ---
     . - 除换行符以外的所有字符。
     ^ - 字符串开头。
@@ -655,3 +672,27 @@ background-image: linear-gradient(225deg, #f44336 20%, #00dd00 20%);
     (?=expr) - 正向预查模式 expr。
     (?!expr) - 负向预查模式 expr。
 ---
+
+## 加解密
+
+### 加密
+```javascript
+compileStr(code) {
+    let c = String.fromCharCode(code.charCodeAt(0) + code.length)
+    for(let i = 1; i < code.length; i++) {
+        c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1))
+    }
+    return escape(c)
+}
+```
+### 解密
+```javascript
+unCompileStr(str) {
+    const code = unescape(str)
+    let c = String.fromCharCode(code.charCodeAt(0) - code.length)
+    for(let i = 1; i < code.length; i++) {
+        c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1))
+    }
+    return c
+}
+```

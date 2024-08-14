@@ -118,3 +118,8 @@ books = models.Book.objects.order_by("-price")
 # 查（符合条件数量）
 books = models.Book.objects.filter(price=200).count() 
 ```
+### 限制数量
+```python
+# 查询限制15条
+books = models.Book.objects.all()[:15]
+```

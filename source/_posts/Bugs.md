@@ -19,4 +19,6 @@ git config --global url."https://".insteadOf git://
 npm cache clean --force
 npm config set registry https://registry.npmmirror.com/
 npm install
+# 恢复npm包地址
+npm config set registry https://registry.npmjs.org/
 ```
