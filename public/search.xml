@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Win-bat</title>
+      <link href="/2024/08/30/win-bat/"/>
+      <url>/2024/08/30/win-bat/</url>
+      
+        <content type="html"><![CDATA[<p>记录学习一些Windows系统下用到的命令</p><h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><h3 id="定时执行脚本"><a href="#定时执行脚本" class="headerlink" title="定时执行脚本"></a>定时执行脚本</h3><pre><code class="shell"># 每天17:32执行test脚本schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /sc DAILY /st 17:32:00</code></pre><h3 id="定时循环间断执行脚本"><a href="#定时循环间断执行脚本" class="headerlink" title="定时循环间断执行脚本"></a>定时循环间断执行脚本</h3><pre><code class="shell"># 当天8:00到21:00每隔2分钟执行test脚本schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /et 21:00:00</code></pre><h3 id="开机启动脚本"><a href="#开机启动脚本" class="headerlink" title="开机启动脚本"></a>开机启动脚本</h3><pre><code class="shell">schtasks.exe /create /tn &quot;restart&quot; /ru SYSTEM /sc ONSTART /tr &quot;E:\dataojo\commond\restart.bat&quot;</code></pre><h3 id="查看已配置定时任务"><a href="#查看已配置定时任务" class="headerlink" title="查看已配置定时任务"></a>查看已配置定时任务</h3><pre><code class="shell">schtasks /query /tn login_task</code></pre><h3 id="结束任务"><a href="#结束任务" class="headerlink" title="结束任务"></a>结束任务</h3><pre><code class="shell">schtasks /end /tn login_task</code></pre><h3 id="删除任务"><a href="#删除任务" class="headerlink" title="删除任务"></a>删除任务</h3><pre><code class="shell">schtasks /delete /tn login_task /f</code></pre><h3 id="运行任务"><a href="#运行任务" class="headerlink" title="运行任务"></a>运行任务</h3><pre><code class="shell">schtasks /run /tn send_msg_task</code></pre><h2 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h2><h3 id="200秒后关机"><a href="#200秒后关机" class="headerlink" title="200秒后关机"></a>200秒后关机</h3><pre><code class="shell">shutdown -s -t 200</code></pre><h3 id="取消关机计划任务"><a href="#取消关机计划任务" class="headerlink" title="取消关机计划任务"></a>取消关机计划任务</h3><pre><code class="shell">shutdown -a</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Win </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Win </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>微信公众号开发</title>
       <link href="/2024/08/15/wechat-h5/"/>
       <url>/2024/08/15/wechat-h5/</url>
