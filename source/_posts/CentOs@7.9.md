@@ -101,5 +101,44 @@ echo '追加' >> myApp.txt
     grep 'temporary password' /var/log/mysqld.log
 ```
 
+## 日志查询跟踪
+### grep
+grep 命令是一个全局查找正则表达式并且打印结果行的命令。
+```shell
+# 输出查询到的包含 test 的行内容
+grep 'test' test.log
+# 输出查询到的包含 test 的行内容(不区分大小写)
+grep -i 'test' test.log
+# 输出查询到的包含 test 的行内容并向下查20行
+grep -A 20 'test' test.log
+```
+### tail
+tail 命令可以将文件指定位置到文件结束的内容写到标准输出。
+```shell
+# 1、输出最后200个字符
+tail -c 200 test.log
+# 2、从第900个字符开始输出，一直到最后
+tail -c +900 test.log
+# 3、输出最后20行
+tail -n 20 test.log
+# 4、从第36行开始输出，一直到最后
+tail -n +36 test.log
+# 5、输出指定文件的最后十行，同时继续监视文件内容有无变化，新增内容会继续输出，直到按下 [Ctrl-C] 组合键退出 || 文件改名或被删除
+tail -f test.log
+# 6、输出指定文件的最后十行，同时继续监视文件内容有无变化，新增内容会继续输出，直到按下 [Ctrl-C] 组合键退出
+tail -F test.log
+# 7、输出指定文件的最后20行，同时继续监视文件内容有无变化，新增内容会继续输出，直到按下 [Ctrl-C] 组合键退出 || 文件改名或被删除
+tail -f -n 20 test.log
+# 8、指定多个文件并输出文件名
+tail -v test1.log test2.log
+# 9、指定多个文件不输出文件名
+tail -q test1.log test2.log
+
+# 【Ctrl】+【S】 暂停刷新。
+# 【Ctrl】+【Q】继续刷新。
+# 【Ctrl】+【C】退出 tail 命令。
+
+```
+
 
 
