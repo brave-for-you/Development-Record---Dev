@@ -4,10 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Win-bat, Ron">
-    <meta name="description" content="记录学习一些Windows系统下用到的命令
-定时任务定时执行脚本# 每天17:32执行test脚本
-schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /">
+    <meta name="keywords" content="Eslint+Husky, Ron">
+    <meta name="description" content="
+前端项目工程配置，强制校验代码格式统一规范
+
+依赖包&amp;#123;
+    &amp;quot;devDependencies&amp;quot;: &amp;#123;
+        &amp;quot;@vitejs/plugin-vue&amp;quot;: &amp;quot;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +22,7 @@ schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Win-bat | Ron</title>
+    <title>Eslint+Husky | Ron</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
     <style>
@@ -343,12 +346,12 @@ schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Win-bat</h1>
+                    <h1 class="description center-align post-title">Eslint+Husky</h1>
                 </div>
             </div>
         </div>
@@ -372,8 +375,8 @@ schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Win/">
-                                <span class="chip bg-color">Win</span>
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B/">
+                                <span class="chip bg-color">前端工程</span>
                             </a>
                         
                     </div>
@@ -384,8 +387,8 @@ schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Win/" class="post-category">
-                                Win
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                前端
                             </a>
                         
                     </div>
@@ -397,7 +400,7 @@ schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-08-30
+                    2024-09-01
                 </div>
                 
 
@@ -424,26 +427,270 @@ schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>记录学习一些Windows系统下用到的命令</p>
-<h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><h3 id="定时执行脚本"><a href="#定时执行脚本" class="headerlink" title="定时执行脚本"></a>定时执行脚本</h3><pre><code class="shell"># 每天17:32执行test脚本
-schtasks /create /tn login_task /tr C:\Users\15703\Desktop\login.bat /sc DAILY /st 17:32:00
+                <blockquote>
+<p>前端项目工程配置，强制校验代码格式统一规范</p>
+</blockquote>
+<h2 id="依赖包"><a href="#依赖包" class="headerlink" title="依赖包"></a>依赖包</h2><pre><code class="javascript">&#123;
+    &quot;devDependencies&quot;: &#123;
+        &quot;@vitejs/plugin-vue&quot;: &quot;^3.0.2&quot;,
+        &quot;eslint&quot;: &quot;^8.57.0&quot;,
+        &quot;eslint-plugin-vue&quot;: &quot;^9.28.0&quot;,
+        &quot;husky&quot;: &quot;^8.0.3&quot;,
+        &quot;sass&quot;: &quot;^1.78.0&quot;,
+        &quot;vite&quot;: &quot;^3.0.6&quot;
+    &#125;
+&#125;
 </code></pre>
-<h3 id="定时循环间断执行脚本"><a href="#定时循环间断执行脚本" class="headerlink" title="定时循环间断执行脚本"></a>定时循环间断执行脚本</h3><pre><code class="shell"># 当天8:00到21:00每隔2分钟执行test脚本
-schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /et 21:00:00
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><pre><code class="javascript">&#123;
+    &quot;scripts&quot;: &#123;
+        &quot;eslint&quot;: &quot;eslint --ext .js,.vue .&quot;,
+        &quot;husky-init&quot;: &quot;husky install&quot;,
+        &quot;husky-add&quot;: &quot;husky add .husky/pre-commit&quot;
+    &#125;,
+&#125;
 </code></pre>
-<h3 id="开机启动脚本"><a href="#开机启动脚本" class="headerlink" title="开机启动脚本"></a>开机启动脚本</h3><pre><code class="shell">schtasks.exe /create /tn &quot;restart&quot; /ru SYSTEM /sc ONSTART /tr &quot;E:\dataojo\commond\restart.bat&quot;
+<h2 id="Eslint规则"><a href="#Eslint规则" class="headerlink" title="Eslint规则"></a>Eslint规则</h2><pre><code class="javascript">module.exports = &#123;
+    env: &#123;
+        browser: true,
+        es2021: true
+    &#125;,
+    extends: [
+        &#39;eslint:recommended&#39;,
+        &#39;plugin:vue/vue3-essential&#39;
+    ],
+    overrides: [
+        &#123;
+            env: &#123;
+                node: true
+            &#125;,
+            files: [
+                &#39;.eslintrc.&#123;js,cjs&#125;&#39;
+            ],
+            parserOptions: &#123;
+                sourceType: &#39;script&#39;
+            &#125;
+        &#125;
+    ],
+    parserOptions: &#123;
+        ecmaVersion: &#39;latest&#39;,
+        sourceType: &#39;module&#39;
+    &#125;,
+    plugins: [
+        &#39;vue&#39;
+    ],
+    rules: &#123;
+        &#39;vue/multi-word-component-names&#39;: &#39;off&#39;,
+        // 这条规则不允许在循环体中使用 await。
+        &#39;no-await-in-loop&#39;: 2,
+        //禁止使用alert confirm prompt
+        &#39;no-alert&#39;: 0,
+        //禁止使用数组构造器
+        &#39;no-array-constructor&#39;: 2,
+        //禁止使用按位运算符
+        &#39;no-bitwise&#39;: 0,
+        //禁止使用arguments.caller或arguments.callee
+        &#39;no-caller&#39;: 2,
+        //禁止给class赋值
+        &#39;no-class-assign&#39;: 2,
+        //禁止在条件表达式中使用赋值语句
+        &#39;no-cond-assign&#39;: 2,
+        //禁止修改const声明的变量
+        &#39;no-const-assign&#39;: 2,
+        //禁止在条件中使用常量表达式 if (true) if (1)
+        &#39;no-constant-condition&#39;: 2,
+        //禁止使用continue
+        &#39;no-continue&#39;: 0,
+        //禁止在正则表达式中使用控制字符
+        &#39;no-control-regex&#39;: 2,
+        //不能对var声明的变量使用delete操作符
+        &#39;no-delete-var&#39;: 2,
+        //不允许将 Math、JSON、Reflect、Atomics 和 Intl 对象作为函数调用  var math = Math();
+        &#39;no-obj-calls&#39;: 2,
+        //不允许两边完全相同的赋值  foo = foo;
+        &#39;no-self-assign&#39;: 2,
+        //不允许无意义的代码
+        // var x = 10;
+        // if (x === x) &#123;x = 20&#125;
+        &#39;no-self-compare&#39;: 2,
+        //禁止稀疏数组， [1,,2]
+        &#39;no-sparse-arrays&#39;: 2,
+        //在调用super()之前不能使用this或super
+        &#39;no-this-before-super&#39;: 2,
+        //不能有未定义的变量
+        &#39;no-undef&#39;: 2,
+        //不能有无法执行的代码  因为 return、throw、break 和 continue 语句无条件地退出一个代码块
+        &#39;no-unreachable&#39;: 2,
+        //不能有声明后未被使用的变量或参数
+        &#39;no-unused-vars&#39;: [2, &#123;&#39;vars&#39;: &#39;all&#39;, &#39;args&#39;: &#39;after-used&#39;&#125;],
+        //未定义前不能使用
+        &#39;no-use-before-define&#39;: 2,
+        //禁止比较时使用NaN，只能用isNaN()
+        &#39;use-isnan&#39;: 2,
+        //强制驼峰法命名myFavoriteColor 、_myFavoriteColor、MY_FAVORITE_COLOR
+        &#39;camelcase&#39;: 2,
+        //return 后面是否允许省略
+        &#39;consistent-return&#39;: 0,
+        //必须使用 if ()&#123;&#125; 中的&#123;&#125;
+        &#39;curly&#39;: [2, &#39;all&#39;],
+        //switch语句最后必须有default
+        &#39;default-case&#39;: 1,
+        //default 必须放在最后
+        &#39;default-case-last&#39;: 2,
+        //避免不必要的方括号
+        &#39;dot-notation&#39;: [0, &#123;&#39;allowKeywords&#39;: true&#125;],
+        //必须使用全等   === and !==
+        &#39;eqeqeq&#39;: 2,
+        //函数表达式必须有名字
+        &#39;func-names&#39;: 0,
+        //函数风格，规定只能使用函数声明/函数表达式
+        &#39;func-style&#39;: [0, &#39;declaration&#39;],
+        //变量名长度
+        &#39;id-length&#39;: 0,
+        //声明时必须赋初值
+        &#39;init-declarations&#39;: 0,
+        //代码块的嵌套块深度
+        &#39;max-depth&#39;: [2, 5],
+        //强制每个文件的最大行数
+        &#39;max-lines&#39;: [1, 9999],
+        //回调嵌套深度
+        &#39;max-nested-callbacks&#39;: [0, 5],
+        //函数最多只能有10个参数
+        &#39;max-params&#39;: [0, 10],
+        //函数内最多有几个声明
+        &#39;max-statements&#39;: [0, 10],
+        //函数名首行大写必须使用new方式调用，首行小写必须用不带new方式调用  var friend = new Person();
+        &#39;new-cap&#39;: 2,
+        //不允许在正则表达式的开头显式使用除法运算符     /=foo/
+        &#39;no-div-regex&#39;: 1,
+        //如果if语句里面有return,后面不能跟else语句
+        &#39;no-else-return&#39;: 2,
+        //块语句中的内容不能为空
+        &#39;no-empty&#39;: 2,
+        //禁止对null使用==或!=运算符
+        &#39;no-eq-null&#39;: 2,
+        //禁止多余的冒号
+        &#39;no-extra-semi&#39;: 2,
+        //小数点之前之后必须要有数字  不能省略0
+        &#39;no-floating-decimal&#39;: 2,
+        //禁止隐式转换
+        &#39;no-implicit-coercion&#39;: 2,
+        //禁止行内备注
+        &#39;no-inline-comments&#39;: 0,
+        //禁止使用__iterator__ 属性
+        &#39;no-iterator&#39;: 2,
+        //禁止不必要的嵌套块
+        &#39;no-lone-blocks&#39;: 2,
+        //禁止在循环中使用函数（如果没有引用外部变量不形成闭包就可以）
+        &#39;no-loop-func&#39;: 0,
+        //禁止链式赋值  var a = b = c = 5;
+        &#39;no-multi-assign&#39;: 0,
+        //字符串不能用\换行
+        &#39;no-multi-str&#39;: 2,
+        //禁止使用嵌套的三目运算
+        &#39;no-nested-ternary&#39;: 0,
+        //禁止在使用new构造一个实例后不赋值
+        &#39;no-new&#39;: 2,
+        //禁止使用new Function
+        &#39;no-new-func&#39;: 2,
+        //禁止使用new Object()
+        &#39;no-new-object&#39;: 2,
+        //禁止使用new创建包装实例，new String new Boolean new Number
+        &#39;no-new-wrappers&#39;: 2,
+        //禁止使用八进制数字（零开头的数字）
+        &#39;no-octal&#39;: 2,
+        //禁止使用++，--
+        &#39;no-plusplus&#39;: 0,
+        //禁止使用__proto__属性
+        &#39;no-proto&#39;: 2,
+        //禁止重复声明变量
+        &#39;no-redeclare&#39;: 2,
+        //return 语句中不能有赋值表达式  return foo = bar + 2;
+        &#39;no-return-assign&#39;: 0,
+        //禁止使用javascript:void(0)
+        &#39;no-script-url&#39;: 0,
+        //外部作用域中的变量不能与它所包含的作用域中的变量或参数同名
+        &#39;no-shadow&#39;: 2,
+        //严格模式中规定的限制标识符不能作为声明时的变量名使用  NaN、Infinity、undefined
+        &#39;no-shadow-restricted-names&#39;: 2,
+        //禁止使用三目运算符
+        &#39;no-ternary&#39;: 0,
+        //变量初始化时不能直接给它赋值为undefined
+        &#39;no-undef-init&#39;: 2,
+        //标识符不能以_开头或结尾
+        &#39;no-underscore-dangle&#39;: 0,
+        //禁止不必要的嵌套 var isYes = answer === 1 ? true : false;
+        &#39;no-unneeded-ternary&#39;: 1,
+        //禁用var，用let和const代替
+        &#39;no-var&#39;: 2,
+        //禁用with
+        &#39;no-with&#39;: 2,
+        //强制对象字面量缩写语法
+        &#39;object-shorthand&#39;: 0,
+        //连续声明  var bar; var baz; =&gt; var bar,baz;
+        &#39;one-var&#39;: 0,
+        //赋值运算符 += -=什么的
+        &#39;operator-assignment&#39;: [0, &#39;always&#39;],
+        //首选const
+        &#39;prefer-const&#39;: 0,
+        //对象字面量中的属性必须加上双引号
+        &#39;quote-props&#39;: 0,
+        //注释风格要不要有空格什么的
+        &#39;spaced-comment&#39;: 0,
+        //使用严格模式
+        &#39;strict&#39;: 0,
+        //箭头函数用小括号括起来
+        &#39;arrow-parens&#39;: 0,
+        //=&gt;的前/后括号
+        &#39;arrow-spacing&#39;: 0,
+        //逗号风格，换行时在行首还是行尾  last 在行尾
+        &#39;comma-style&#39;: [2, &#39;last&#39;],
+        //缩进风格  2个tab
+        &#39;indent&#39;: [2, 4],
+        //对象字面量中冒号的前后空格
+        &#39;key-spacing&#39;: [0, &#123;&#39;beforeColon&#39;: false, &#39;afterColon&#39;: true&#125;],
+        //new时必须加小括号
+        &#39;new-parens&#39;: 2,
+        //禁止非必要的括号
+        &#39;no-extra-parens&#39;: 1,
+        //空行最多不能超过3行
+        &#39;no-multiple-empty-lines&#39;: [1, &#123;&#39;max&#39;: 3&#125;],
+        //一行结束后面不要有空格
+        &#39;no-trailing-spaces&#39;: 1,
+        //换行时运算符在行尾还是行首
+        // foo = 1 +
+        //       2;
+        &#39;operator-linebreak&#39;: [1, &#39;after&#39;],
+        //块语句内行首行尾是否要空行
+        &#39;padded-blocks&#39;: 0,
+        //引号类型 `` &#39;&#39; &#39;&#39;
+        &#39;quotes&#39;: [1, &#39;single&#39;],
+        //语句强制分号结尾
+        &#39;semi&#39;: [0, &#39;always&#39;],
+        //分号前后空格
+        &#39;semi-spacing&#39;: [0, &#123;&#39;before&#39;: false, &#39;after&#39;: true&#125;],
+        //函数定义时括号前面要不要有空格
+        &#39;space-before-function-paren&#39;: [0, &#39;always&#39;],
+        //中缀操作符周围要不要有空格   a + b
+        &#39;space-infix-ops&#39;: 0,
+        //正则表达式字面量用小括号包起来
+        &#39;wrap-regex&#39;: 0,
+    &#125;
+&#125;
 </code></pre>
-<h3 id="查看已配置定时任务"><a href="#查看已配置定时任务" class="headerlink" title="查看已配置定时任务"></a>查看已配置定时任务</h3><pre><code class="shell">schtasks /query /tn login_task
+<h2 id="eslintignore"><a href="#eslintignore" class="headerlink" title=".eslintignore"></a>.eslintignore</h2><pre><code class="txt">build/*.js
+node_modules
+public
+src/config/*
+dist
+vite.config.js
 </code></pre>
-<h3 id="结束任务"><a href="#结束任务" class="headerlink" title="结束任务"></a>结束任务</h3><pre><code class="shell">schtasks /end /tn login_task
-</code></pre>
-<h3 id="删除任务"><a href="#删除任务" class="headerlink" title="删除任务"></a>删除任务</h3><pre><code class="shell">schtasks /delete /tn login_task /f
-</code></pre>
-<h3 id="运行任务"><a href="#运行任务" class="headerlink" title="运行任务"></a>运行任务</h3><pre><code class="shell">schtasks /run /tn send_msg_task
-</code></pre>
-<h2 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h2><h3 id="200秒后关机"><a href="#200秒后关机" class="headerlink" title="200秒后关机"></a>200秒后关机</h3><pre><code class="shell">shutdown -s -t 200
-</code></pre>
-<h3 id="取消关机计划任务"><a href="#取消关机计划任务" class="headerlink" title="取消关机计划任务"></a>取消关机计划任务</h3><pre><code class="shell">shutdown -a
+<h2 id="pre-commit"><a href="#pre-commit" class="headerlink" title="pre-commit"></a>pre-commit</h2><blockquote>
+<p>注意：husky使用前必须先初始化git仓库，然后再依次初始新增husky文件</p>
+</blockquote>
+<pre><code class="shell">#!/usr/bin/env sh
+. &quot;$(dirname -- &quot;$0&quot;)/_/husky.sh&quot;
+
+npm run eslint
 </code></pre>
 
                 
@@ -471,7 +718,7 @@ schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /e
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.zzp0322.cn/2024/08/30/win-bat/">https://github.zzp0322.cn/2024/08/30/win-bat/</a>
+                    <a href="https://github.zzp0322.cn/2024/09/01/eslint-husky/">https://github.zzp0322.cn/2024/09/01/eslint-husky/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -509,8 +756,8 @@ schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /e
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Win/">
-                                    <span class="chip bg-color">Win</span>
+                                <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B/">
+                                    <span class="chip bg-color">前端工程</span>
                                 </a>
                             
                         </div>
@@ -556,9 +803,10 @@ schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /e
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2024/09/01/eslint-husky/">
                     <div class="card-image">
@@ -576,9 +824,9 @@ schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /e
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -591,6 +839,7 @@ schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /e
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -609,13 +858,13 @@ schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /e
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/08/15/wechat-h5/">
+                <a href="/2024/08/30/win-bat/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="微信公众号开发">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Win-bat">
                         
-                        <span class="card-title">微信公众号开发</span>
+                        <span class="card-title">Win-bat</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -626,14 +875,14 @@ schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /e
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-30
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%BE%AE%E4%BF%A1/" class="post-category">
-                                    微信
+                            <a href="/categories/Win/" class="post-category">
+                                    Win
                                 </a>
                             
                             
@@ -643,8 +892,8 @@ schtasks /create /tn login_task /tr D:\test.bat /sc minute /mo 2 /st 08:00:00 /e
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/">
-                        <span class="chip bg-color">公众号</span>
+                    <a href="/tags/Win/">
+                        <span class="chip bg-color">Win</span>
                     </a>
                     
                 </div>
